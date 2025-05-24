@@ -18,7 +18,7 @@ services:
   core:
     networks:
       - envy
-    image: ghcr.io/orbical-dev/envybase-core:stable
+    image: ghcr.io/orbical-dev/envybase-core:0.5.3
     build: apps/core
     expose:
       - "3000"
@@ -28,14 +28,14 @@ services:
   auth:
     depends_on:
       - mongodb
-    image: ghcr.io/orbical-dev/envybase-auth:stable
+    image: ghcr.io/orbical-dev/envybase-auth:0.5.3
     build: apps/auth
     networks:
       - envy
     expose:
       - "3121"
     environment:
-      - DOCKER=False
+      - DOCKER=True
       - MONGO_URI=mongodb://mongodb:27017
       - REDIS_HOST=redis
       - REDIS_PORT=6379
@@ -44,7 +44,7 @@ services:
       - USERNAME_MIN_LENGTH=3
       - USERNAME_MAX_LENGTH=32
       - ISSUER=your_issuer
-      - AUTH_KEY=your_auth_key
+      - AUTH_KEY=1247S@#HHDA&@#NYUNG(*^#$OJA&(#$HFJSYCVHJN@&*(MU@987jkji@&#ujfukjklJ*(#U*(&@JRIOYSDUFH
       - ISSECURE=False
       - ISCLOUDFLARE=False
 
@@ -53,28 +53,28 @@ services:
       - envy
     depends_on:
       - mongodb
-    image: ghcr.io/orbical-dev/envybase-database:stable
+    image: ghcr.io/orbical-dev/envybase-database:0.5.3
     build: apps/database
     expose:
       - "3122"
     environment:
       - MONGO_URI=mongodb://mongodb:27017
       - ISCLOUDFLARE=False
-      - DOCKER=False
+      - DOCKER=True
 
   func:
     networks:
       - envy
     depends_on:
       - mongodb
-    image: ghcr.io/orbical-dev/envybase-func:stable
+    image: ghcr.io/orbical-dev/envybase-func:0.5.3
     build: apps/function
     expose:
       - "3123"
     environment:
       - MONGO_URI=mongodb://mongodb:27017
       - ISCLOUDFLARE=False
-      - DOCKER=False
+      - DOCKER=True
   mongodb:
     networks:
       - envy
